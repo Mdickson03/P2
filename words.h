@@ -1,3 +1,5 @@
+#ifndef _WORDS_H
+#define _WORDS_H
 
 #include <stdio.h>
 #include <stdlib.h>
@@ -73,27 +75,4 @@ void free_dict(Dictionary *dict) {
     free(dict);
 }
 
-// Example usage
-int main() {
-    Dictionary *dict = create_dict();
-
-    dict_insert(dict, "apple", 5);
-    dict_insert(dict, "banana", 8);
-    dict_insert(dict, "orange", 12);
-
-    int value;
-    if (dict_search(dict, "banana", &value)) {
-        printf("banana: %d\n", value);
-    } else {
-        printf("banana not found\n");
-    }
-
-    if (dict_search(dict, "banana", &value)) {
-        printf("banana: %d\n", value);
-    } else {
-        printf("banana not found\n");
-    }
-
-    free_dict(dict);
-    return 0;
-}
+#endif
