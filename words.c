@@ -35,7 +35,7 @@ int word_finder(const char *word) {
 }
 
 // Adds words to table
-void word_add(char *word) {
+void add_word(char *word) {
     int index = word_finder(word);
     if (index != -1) {
         word_table[index].counter++;
@@ -47,7 +47,7 @@ void word_add(char *word) {
             count++;
         }
         else {
-            fprintf("Word Table is full");
+            printf("Word Table is full");
         }
     }
 }
@@ -68,7 +68,7 @@ void print_words() {
     qsort(word_table, count, sizeof(WORD), compare_words);
 
     for (int i = 0; i < count; i++) {
-        printf("%s &d\n", word_table[i].words, word_table[i].counter );
+        printf("%s &d\n", word_table[i].words, word_table[i].counter);
     }
 }
 
@@ -129,7 +129,7 @@ void process_directory(const char *dirname) {
         }
 
         char path[MAX_PATH];
-        snprintf(path, sizeof(path), "&s/%s", dirname, entry->d_name);
+        printf(path, sizeof(path), "&s/%s", dirname, entry->d_name);
 
         struct stat statbuf;
         if (stat(path, &statbuf) == -1 ) {
@@ -152,7 +152,7 @@ void process_directory(const char *dirname) {
 int main (int argc, char *argv[]) { 
 
     if(argc < 2) {
-        fprint(stderr, "Usage: %s <file_or_directory>...\n", argv[0]);
+        printf(stderr, "Usage: %s <file_or_directory>...\n", argv[0]);
         return 1;
     }
 

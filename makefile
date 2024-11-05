@@ -6,8 +6,11 @@ CC = gcc
 CFLAGS = -Wall -g
 
 # Files and targets
-LIBRARY = words.c
+TARGET = words
+
+# Target builds the program
+all: $(TARGET)
 
 # Compile the library words.c with the header
-$(LIBRARY): words.c 
-	$(CC) $(CFLAGS) -c words.c
+$(TARGET): words.c
+	$(CC) $(CFLAGS) -o $(TARGET) words.c
