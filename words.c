@@ -8,12 +8,71 @@
 #include <sys/stat.h>
 #include <ctype.h>
 #include <errno.h>
-`
-#define MAX_WORD_LENGTH 100
-#define TABLE_SIZE 1000
+
 #define BUFFER_SIZE 4096
+#define TABLE_SIZE 1000
+#define MAX_WORD_LENGTH 100
 #define MAX_PATH 4096
 
+
+//Creation of struct
+typedef struct {
+    char words[MAX_WORD_LENGTH];
+    int counter;
+
+}WORD;
+
+WORD word_table[TABLE_SIZE];
+int count = 0;
+
+int word_finder(const char *word) {
+    for (int i = 0; i < count; i++) {
+        if (strcmp(word_table[i].words, word) == 0) {
+            return i;
+        }
+    }
+    return -1;
+}
+
+//Adds words to table
+void word_add(char *word) {
+    int index = word_finder(word);
+    if (index != -1) {
+        word_table[index].counter++;
+    }
+    else {
+        if (count < TABLE_SIZE ) {
+            strcpy(word_table[count].words, word);
+            word_table[count].counter = 1;
+            count++;
+        }
+        else {
+            fprintf("Word Table is full");
+        }
+    }
+}
+
+//Will compare and sort words to be printed
+int compare_words(const void *a, const void *b ) {
+    WORD *entry_a = (WORD *)a;
+    WORD *entry_b = (WORD *)b;
+
+    if(entry_b->counter != entry_a->counter) {
+        return entry_b->counter - entry_a->counter;
+    }
+
+    return strcmp(entry_a->counter, entry_b->counter);
+}
+
+void print_words() {
+    qsort(word_table, count, sizeof(WORD), compare_words);
+
+    for (int i = 0; i < count; i++) {
+        printf("%s &d\n", word_table[i].words, word_table[i].counter );
+    }
+}
+
+//Will read throught a file ending in .txt
 void process_file(const char *filename) {
     int file = open(filename, O_RDONLY);
     if (file < 0) {
@@ -55,6 +114,7 @@ void process_file(const char *filename) {
     close(file);
 }
 
+//Will traverse a directory looking at each file and ignoring hidden ones
 void process_directory(const char *dirname) {
     DIR *directory = opendir(dirname);
     if (!directory) {
