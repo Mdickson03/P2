@@ -15,7 +15,7 @@
 #define MAX_PATH 4096
 
 
-//Creation of struct
+// Creation of struct
 typedef struct {
     char words[MAX_WORD_LENGTH];
     int counter;
@@ -34,7 +34,7 @@ int word_finder(const char *word) {
     return -1;
 }
 
-//Adds words to table
+// Adds words to table
 void word_add(char *word) {
     int index = word_finder(word);
     if (index != -1) {
@@ -52,7 +52,7 @@ void word_add(char *word) {
     }
 }
 
-//Will compare and sort words to be printed
+// Will compare and sort words to be printed
 int compare_words(const void *a, const void *b ) {
     WORD *entry_a = (WORD *)a;
     WORD *entry_b = (WORD *)b;
@@ -72,7 +72,7 @@ void print_words() {
     }
 }
 
-//Will read throught a file ending in .txt
+// Will read throught a file ending in .txt
 void process_file(const char *filename) {
     int file = open(filename, O_RDONLY);
     if (file < 0) {
@@ -114,7 +114,7 @@ void process_file(const char *filename) {
     close(file);
 }
 
-//Will traverse a directory looking at each file and ignoring hidden ones
+// Will traverse a directory looking at each file and ignoring hidden ones
 void process_directory(const char *dirname) {
     DIR *directory = opendir(dirname);
     if (!directory) {
@@ -148,7 +148,8 @@ void process_directory(const char *dirname) {
     closedir(directory);
 }
 
-int main (int argc, char *argv[]) {                                      // Will read to see if a directory is a file or subdirectory
+// Will read to see if a directory is a file or subdirectory
+int main (int argc, char *argv[]) { 
 
     if(argc < 2) {
         fprint(stderr, "Usage: %s <file_or_directory>...\n", argv[0]);
@@ -173,6 +174,4 @@ int main (int argc, char *argv[]) {                                      // Will
 
     print_words();
     return 0;
-    }
-
-
+}
