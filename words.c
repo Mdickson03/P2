@@ -70,7 +70,10 @@ void print_words() {
     qsort(word_table, count, sizeof(WORD), compare_words);
 
     for (int i = 0; i < count; i++) {
-        printf("%s %d\n", word_table[i].words, word_table[i].counter);
+      char output[MAX_WORD_LENGTH + 20];
+      snprintf(output, sizeof(output), "%s %d\n", word_table[i].words, word_table[i].counter);
+
+      write(STDOUT_FILENO, output, strlen(output));
     }
 }
 
@@ -154,7 +157,7 @@ void process_directory(const char *dirname) {
 int main (int argc, char *argv[]) { 
 
     if(argc < 2) {
-        printf(stderr, "Usage: %s <file_or_directory>...\n", argv[0]);
+        fprintf(stderr, "Usage: %s <file_or_directory>...\n", argv[0]);
         return 1;
     }
 
