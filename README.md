@@ -1,1 +1,6 @@
 # P2
+In words.c, we first process data depending on whether it is a file or a directory.
+
+Once reading the data in from either the .txt file or from the directory, we opted to use a data structure that roughly resembles a dict or a hash table. Being able to store the individual words as keys and easily change their values made this the logical choice for our data structure. Additionally, the O(n) worst-case run time of a hash table allows us to quickly add data even given a large file. We opted to write this part of the program in a header file because it was distinct from the rest of the program providing easier readability. 
+
+Through our testing we examined the following: repeated words, capitalization, apostrophes before, in the middle, of and after words, punctuation marks, and exclamation marks. We applied this to multiple .txt files as well as directories in an effort to be thorough. As we quickly discovered after reading the design doc, the definition of a word is not the same as a word in the English language. A more thorough set of test cases would also have included every character in ASCII and more attempts to crash our own program by overwhelming ourselves with both large files and a large number of files. 

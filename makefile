@@ -7,11 +7,10 @@ CFLAGS = -Wall -g
 
 # Files and targets
 LIBRARY = words.c
-TARGET = hashmap
 
-# Target builds the hashmap program
-all: $(TARGET)
+# Target builds the main program
+all: $(LIBRARY)
 
 # Compile the library words.c with the header
-$(LIBRARY): words.c
+$(LIBRARY): words.c words.h
 	$(CC) $(CFLAGS) -c words.c
