@@ -8,7 +8,7 @@
 #include <sys/stat.h>
 #include <ctype.h>
 #include <errno.h>
-
+`
 #define MAX_WORD_LENGTH 100
 #define TABLE_SIZE 1000
 #define BUFFER_SIZE 4096
