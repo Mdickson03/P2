@@ -22,9 +22,11 @@ typedef struct {
 
 }WORD;
 
-WORD = word_table[TABLE_SIZE]
+WORD word_table[TABLE_SIZE];
 int count = 0;
 
+
+//will search to see if a word exists
 int word_finder(const char *word) {
     for (int i = 0; i < count; i++) {
         if (strcmp(word_table[i].words, word) == 0) {
