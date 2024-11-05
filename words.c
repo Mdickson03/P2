@@ -22,7 +22,7 @@ typedef struct {
 
 }WORD;
 
-WORD word_table[TABLE_SIZE];
+WORD = word_table[TABLE_SIZE]
 int count = 0;
 
 int word_finder(const char *word) {
@@ -61,14 +61,14 @@ int compare_words(const void *a, const void *b ) {
         return entry_b->counter - entry_a->counter;
     }
 
-    return strcmp(entry_a->counter, entry_b->counter);
+    return strcmp(entry_a->words, entry_b->words);
 }
 
 void print_words() {
     qsort(word_table, count, sizeof(WORD), compare_words);
 
     for (int i = 0; i < count; i++) {
-        printf("%s &d\n", word_table[i].words, word_table[i].counter);
+        printf("%s %d\n", word_table[i].words, word_table[i].counter);
     }
 }
 
